@@ -1,0 +1,16 @@
+alter table profiles add constraint profiles_user_id_fk foreign key (user_id) references users(id) on delete cascade; 
+alter table profiles add constraint profiles_photo_id_fk foreign key (photo_id) references media(id) on delete set null;
+alter table messages add constraint messages_from_user_id_fk foreign key (from_user_id) references users(id) on delete no action;
+alter table messages add constraint messages_to_user_id_fk foreign key (to_user_id) references users(id) on delete no action;
+alter table messages add constraint messages_to_community_id_fk foreign key (to_community_id) references communities (id)on delete no action ;
+alter table post add constraint post_media_id_fk foreign key (media_id) references media (id) on delete cascade;
+alter table post add constraint post_user_id_fk foreign key (user_id) references users (id) on delete cascade;
+alter table media add constraint media_media_type_id_fk foreign key (media_type_id) references media_types (id) on delete no action;
+alter table media add constraint media_user_id_fk foreign key (user_id) references users (id) on delete cascade;
+alter table likes add constraint likes_user_id_fk foreign key (user_id) references users (id) on delete cascade;
+alter table likes add constraint likes_target_type_id_fk foreign key (target_type_id) references target_types (id) on delete no action;
+alter table friendship add constraint friendship_user_id_fk foreign key (user_id) references users (id) on delete cascade;
+alter table friendship add constraint friendship_friend_id_fk foreign key (friend_id) references users (id) on delete cascade;
+alter table friendship add constraint friendship_status_id_fk foreign key (status_id) references friendship_statuses (id) on delete no action;
+alter table communities_users add constraint communities_users_community_id_fk foreign key (community_id) references communities (id) on delete cascade;
+alter table communities_users add constraint communities_users_user_id_fk foreign key (user_id) references users (id) on delete cascade;
